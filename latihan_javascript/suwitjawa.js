@@ -1,3 +1,7 @@
+//buat looping agar sentiasa keluar pop up tannya masih nak main atau tak
+tanya = true;
+while(tanya){
+
 //pilihan user
 var p = prompt('pilih  : gajah, semut, orang');
 
@@ -38,3 +42,8 @@ if(p==comp){
 
 //tampilkan hasilnya 
 alert('Kamu memilih: '+p+'dan komputer memilih: '+comp+'\n Maka hasilnya kamu: '+hasil);
+tanya = confirm('lagi?');
+//bila guna confirm, automatik keluar pop up ok atau cancel
+}
+
+alert('Terima kasih sudah bermain suwit jawa')
