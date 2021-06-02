@@ -1,0 +1,21 @@
+3 jenis popup box dalam javasript
+
+- alert (display)
+- prompt (user can insert input , mengembalikan nilai input)
+- confirm (mengambalikan nilai boolean true/false )
+
+example:
+
+alert ('selamat datang');
+var lagi = true;
+
+if (lagi === true){
+ var nama = prompt(masukkan nama : );
+ alert ('hai'+nama);
+ 
+ lagi = confirm(cuba lagi ?);
+}
+
+alert ('terima kasih');
+
+--- akan loop selagi condition lagi adalah true setelah user menekan alert confirm.
