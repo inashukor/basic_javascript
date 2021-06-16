@@ -1,3 +1,13 @@
+//fetch(resource,init)
+//resource = boleh url / object
+//init (optional)
+// response = ialah hasil dari fetch
+//response(property) 
+// response.ok /headers/redirected/status/statusText/type/url/body
+//reponse(method)
+//clone() error() redirect() blob() ...
+
+
 //guna jquery ajax and callback
 
 // $('.search-button').on('click',function(){
