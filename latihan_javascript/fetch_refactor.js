@@ -35,12 +35,42 @@
 // });
 
 const searchButton = document.querySelector('.search-button');
-searchButton.addEventListener('click', async function(){ // ni asynchronous kena bagitau java
+searchButton.addEventListener('click', async function(){ // ni asynchronous kena bagitau java /nak ada roor handling guna blck try catch
+    try{
     const inputKeyword = document.querySelector('.input-keyword');
     const movies = await getMovies(inputKeyword.value);
     updateUI(movies);
-
+    }catch(e){
+        alert(e);
+    }
 });
+
+function getMovies(keyword){
+    return fetch('http://www.omdbapi.com/?apikey=f84202d6&s=' + keyword)
+    //fetch adalah function di jv yang kembalikan promise (guna then)
+    //check hanya akan jalan kalau data betul
+        .then(response =>{
+            if(!response.ok){
+                throw new Error(response.statusText);
+            }
+            return response.json();
+        })
+        .then(response => {
+            if(response.response === "False"){
+                throw new Error(response.Error);
+            }
+            return response.Search; 
+        });
+
+}
+
+function updateUI(movies){
+    let cards = '';
+    movies.forEach(m => cards +=showCards(m));
+    const movieContainer = document.querySelector('.movie-container');
+    movieContainer.innerHTML = cards;
+
+}
 
 //event binding
 //event yang awalnya takda tapi dia simpan
@@ -65,21 +95,7 @@ function updateUIDetail(m){
     modalBody.innerHTML = movieDetail;
 }
 
-function getMovies(keyword){
-    return fetch('http://www.omdbapi.com/?apikey=f84202d6&s=' + keyword)
-    //fetch adalah function di jv yang kembalikan promise (guna then)
-        .then(response =>response.json())
-        .then(response => response.Search);
 
-}
-
-function updateUI(movies){
-    let cards = '';
-    movies.forEach(m => cards +=showCards(m));
-    const movieContainer = document.querySelector('.movie-container');
-    movieContainer.innerHTML = cards;
-
-}
 
 
 function showCards(m){
